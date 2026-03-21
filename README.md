@@ -31,17 +31,59 @@ Luxid is ideal for small-to-medium web apps, APIs, school management systems, da
 
 ---
 
+## Installation
+
+To get started with Luxid, follow these steps:
+
+### 1. Create a new Luxid project via Composer
+```bash
+composer create-project luxid/framework my-app
+cd my-app
+```
+
+### 2. Configure environment
+
+- Edit `.env` to configure your database
+
+```env
+DB_DSN=mysql:host=127.0.0.1;port=3306;dbname=luxid
+DB_USER=root
+DB_PASSWORD=
+```
+
+You can find further instructions in the .env on how to configure your database credentials based on your Operating System.
+
+- Create the database
+
+```bash
+php juice db:create
+```
+
+- Run migrations
+
+```bash
+php juice db:migrate
+```
+
+- Start the development server
+
+```bash
+php juice start
+```
+
+- After these steps, you can access your Luxid application at http://localhost:8080
+
+---
+
 ## Learning Luxid
 
-Luxid includes clear documentation (coming soon) and is intentionally designed to be beginner-friendly for developers learning framework architecture.
+Luxid clear documentation [luxid.dev](https://www.luxid.dev) and is intentionally designed to be beginner-friendly for developers learning framework architecture.
 
-A step-by-step guide and examples will be available soon in the `/docs` directory.
-
-Until then, you can explore:
+You can explore:
 
 - The `screens/` folder – UI screens
-- The `actions/` folder – controllers
-- `system/` – the framework core (Router, Request, Response, Action, etc.)
+- The `app/actions/` folder – controllers
+- `migrations/` folder - migrations
 
 ---
 
