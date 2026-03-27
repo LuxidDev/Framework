@@ -41,7 +41,7 @@ component('pages/Welcome', function ($c) {
         </h1>
 
         <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-200">
-          @echo($state->subtitle)
+          @raw($state->subtitle)
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up delay-300">

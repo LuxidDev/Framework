@@ -1,5 +1,5 @@
 <?php
-// routes/web.php - Nova routes (HTML responses using Nova)
+// Nova routes (HTML responses using Nova)
 
 use App\Actions\WelcomeAction;
 
@@ -14,13 +14,3 @@ route('welcome')
 //     ->get('/dashboard')
 //     ->uses(DashboardAction::class, 'index')
 //     ->secure();
-
-// Example: About page
-// route('about')
-//     ->get('/about')
-//     ->uses(function($request, $response) {
-//         return nova('pages/About', [
-//             'title' => 'About Luxid'
-//         ]);
-//     })
-//     ->open();
