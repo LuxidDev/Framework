@@ -61,7 +61,8 @@ if (is_dir($helpersPath)) {
 // Create application instance
 $app = new Application(dirname(__DIR__), $config);
 
-// Load routes
+// Load routes - API routes first (CORS enabled), then web routes
+require_once __DIR__ . '/../routes/api.php';
 require_once __DIR__ . '/../routes/web.php';
 
 // Run the application
