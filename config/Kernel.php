@@ -20,6 +20,9 @@ class Kernel
       }
     }
 
+    // Setup Rocket ORM
+    self::setupRocket($vendorDir, $projectRoot);
+
     // Setup Nova directory structure
     self::setupNova($vendorDir, $projectRoot);
 
@@ -43,6 +46,135 @@ class Kernel
     echo "📚 Documentation: https://luxid.dev/docs" . PHP_EOL;
     echo "🐛 Report issues: https://github.com/luxid/framework/issues" . PHP_EOL;
     echo PHP_EOL;
+  }
+
+  private static function setupRocket(string $vendorDir, string $projectRoot): void
+  {
+    $rocketPath = $vendorDir . '/luxid/rocket';
+
+    if (!is_dir($rocketPath)) {
+      echo "⚠️  Rocket ORM not found. Skipping Rocket setup..." . PHP_EOL;
+      return;
+    }
+
+    // Create migrations directory
+    $migrationsDir = $projectRoot . '/migrations';
+    if (!is_dir($migrationsDir)) {
+      mkdir($migrationsDir, 0755, true);
+      echo "✓ Created migrations directory" . PHP_EOL;
+    }
+
+    // Create seeds directory
+    $seedsDir = $projectRoot . '/seeds';
+    if (!is_dir($seedsDir)) {
+      mkdir($seedsDir, 0755, true);
+      echo "✓ Created seeds directory" . PHP_EOL;
+    }
+
+    // Create initial migration
+    $migrationFile = $migrationsDir . '/m00001_create_users_table.php';
+    if (!file_exists($migrationFile)) {
+      $content = <<<'PHP'
+<?php
+
+use Rocket\Migration\Migration;
+use Rocket\Migration\Rocket;
+
+class m00001_create_users_table extends Migration
+{
+    public function up(): void
+    {
+        Rocket::table('users', function($column) {
+            $column->id('id');
+            $column->string('email')->unique();
+            $column->string('password')->hidden();
+            $column->string('firstname');
+            $column->string('lastname');
+            $column->timestamps();
+        });
+    }
+    
+    public function down(): void
+    {
+        Rocket::drop('users');
+    }
+}
+PHP;
+      file_put_contents($migrationFile, $content);
+      echo "✓ Created initial user migration" . PHP_EOL;
+    }
+
+    // Create DatabaseSeeder
+    $seederFile = $seedsDir . '/DatabaseSeeder.php';
+    if (!file_exists($seederFile)) {
+      $content = <<<'PHP'
+<?php
+
+namespace Seeds;
+
+use Rocket\Seed\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $this->call(UserSeeder::class);
+    }
+}
+PHP;
+      file_put_contents($seederFile, $content);
+      echo "✓ Created DatabaseSeeder" . PHP_EOL;
+    }
+
+    // Create UserSeeder
+    $userSeederFile = $seedsDir . '/UserSeeder.php';
+    if (!file_exists($userSeederFile)) {
+      $content = <<<'PHP'
+<?php
+
+namespace Seeds;
+
+use Rocket\Seed\Seeder;
+use App\Entities\User;
+
+class UserSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // Create admin user
+        $admin = new User();
+        $admin->email = 'admin@example.com';
+        $admin->password = 'admin123';
+        $admin->firstname = 'Admin';
+        $admin->lastname = 'User';
+        $admin->save();
+        
+        echo "  ✓ Created admin user\n";
+        
+        // Create 10 regular users
+        for ($i = 1; $i <= 10; $i++) {
+            $user = new User();
+            $user->email = "user{$i}@example.com";
+            $user->password = 'password123';
+            $user->firstname = "User";
+            $user->lastname = "{$i}";
+            $user->save();
+        }
+        
+        echo "  ✓ Created 10 regular users\n";
+    }
+}
+PHP;
+      file_put_contents($userSeederFile, $content);
+      echo "✓ Created UserSeeder" . PHP_EOL;
+    }
+
+    // Create Rocket cache directory
+    $cacheDir = $projectRoot . '/storage/framework/rocket';
+    if (!is_dir($cacheDir)) {
+      mkdir($cacheDir, 0755, true);
+      echo "✓ Created Rocket cache directory" . PHP_EOL;
+    }
   }
 
   private static function setupNova(string $vendorDir, string $projectRoot): void

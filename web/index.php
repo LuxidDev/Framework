@@ -1,11 +1,12 @@
 <?php
-// Luxid Framework - Web Entry Point
+// Luxid Framework - Entry Point
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Luxid\Foundation\Application;
 use Luxid\Nova\Compiler;
 use Luxid\Nova\ComponentCache;
+use Rocket\Connection\Connection;
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -13,6 +14,13 @@ $dotenv->load();
 
 // Load configuration
 $config = require_once __DIR__ . '/../config/config.php';
+
+// Initialize Rocket connection
+if (isset($config['db'])) {
+  Connection::initialize($config['db']);
+  // Store connection in app container
+  $config['rocket_connection'] = Connection::getInstance();
+}
 
 // Configure Nova if available
 if (class_exists('Luxid\Nova\Compiler')) {
@@ -61,7 +69,7 @@ if (is_dir($helpersPath)) {
 // Create application instance
 $app = new Application(dirname(__DIR__), $config);
 
-// Load routes - API routes first (CORS enabled), then web routes
+// Load routes
 require_once __DIR__ . '/../routes/api.php';
 require_once __DIR__ . '/../routes/web.php';
 

@@ -1,11 +1,8 @@
 <?php
-// Configuration File
 
 function getDatabaseDSN(): string
 {
-  // If DB_DSN is explicitly set, use it
   if (isset($_ENV['DB_DSN'])) {
-    // Remove quotes if present
     $dsn = $_ENV['DB_DSN'];
     $dsn = trim($dsn, '"\'');
     return $dsn;
@@ -15,11 +12,10 @@ function getDatabaseDSN(): string
   $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
   $port = $_ENV['DB_PORT'] ?? '3306';
 
-  // Check for common socket paths
   $sockets = [
-    '/run/mysqld/mysqld.sock',      // Arch Linux
-    '/var/run/mysqld/mysqld.sock',   // Ubuntu/Debian
-    '/tmp/mysql.sock',               // macOS & others
+    '/run/mysqld/mysqld.sock',
+    '/var/run/mysqld/mysqld.sock',
+    '/tmp/mysql.sock',
   ];
 
   foreach ($sockets as $socket) {
@@ -28,15 +24,28 @@ function getDatabaseDSN(): string
     }
   }
 
-  // Fallback to TCP
   return "mysql:host={$host};port={$port};dbname={$dbname}";
 }
 
 return [
   'db' => [
-    'dsn' => getDatabaseDSN(), // ← Remove "self::"
+    'dsn' => getDatabaseDSN(),
     'user' => $_ENV['DB_USER'] ?? 'root',
     'password' => $_ENV['DB_PASSWORD'] ?? '',
   ],
   'userClass' => \App\Entities\User::class,
+
+  // Rocket ORM settings
+  'rocket' => [
+    'cache' => [
+      'enabled' => true,
+      'path' => __DIR__ . '/../storage/framework/rocket',
+    ],
+    'migrations' => [
+      'path' => __DIR__ . '/../migrations',
+    ],
+    'seeds' => [
+      'path' => __DIR__ . '/../seeds',
+    ],
+  ],
 ];
