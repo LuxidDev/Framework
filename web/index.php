@@ -5,7 +5,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Luxid\Foundation\Application;
 use Luxid\Nova\Compiler;
-use Luxid\Nova\ComponentCache;
 use Rocket\Connection\Connection;
 
 // Load environment variables
