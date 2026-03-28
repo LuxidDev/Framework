@@ -6,9 +6,9 @@
     "keywords": ["framework", "starter", "luxid", "php"],
     "require": {
         "php": "^8.0",
-        "luxid/engine": "^0.6.3",
+        "luxid/engine": "^0.6.4",
         "luxid/nova": "^0.1.1",
-        "luxid/rocket": "^0.1.6",
+        "luxid/rocket": "^0.1.7",
         "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
