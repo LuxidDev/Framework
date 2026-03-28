@@ -2,7 +2,6 @@
 
 namespace App\Actions;
 
-use App\Actions\LuxidAction;
 use Luxid\Nodes\Response;
 
 class HealthCheckerAction extends LuxidAction
