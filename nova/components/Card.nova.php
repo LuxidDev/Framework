@@ -24,11 +24,6 @@ component('components/Card', function ($c) {
         <div class="font-bold text-xl mb-2 text-white">@echo($state->title)</div>
         <p class="text-gray-300 text-base">@echo($state->content)</p>
       </div>
-      <div class="px-6 py-4">
-        <button class="@echo($buttonClass) text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105">
-          Learn More
-        </button>
-      </div>
     </div>
 <?php
   });
