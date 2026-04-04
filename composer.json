@@ -25,10 +25,10 @@
   "extra": {
     "luxid": {
       "providers": [
-        "Luxid\\Sentinel\\Providers\\SentinelServiceProvider"
+        "Luxid\\Haven\\Providers\\HavenServiceProvider"
       ],
       "commands": {
-        "sentinel:install": "Luxid\\Sentinel\\Console\\InstallCommand"
+        "haven:install": "Luxid\\Haven\\Console\\InstallCommand"
       }
     }
   },
