@@ -3,5 +3,5 @@
 
 use App\Actions\WelcomeAction;
 
-// Register web routes
-WelcomeAction::routes()->register();
+// Register web actions with explicit class name
+WelcomeAction::routes()->register(WelcomeAction::class);

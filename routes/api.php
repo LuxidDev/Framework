@@ -1,7 +1,7 @@
 <?php
 // API routes (JSON responses)
 
-use App\Actions\HealthCheckerAction;
+use App\Actions\HealthCheckAction;
 
-// Register API routes using the new style
-HealthCheckerAction::routes()->register();
+// Register all API actions with explicit class names
+HealthCheckAction::routes()->register(HealthCheckAction::class);
