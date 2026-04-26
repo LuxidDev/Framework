@@ -2,18 +2,23 @@
 
 namespace App\Actions;
 
-use App\Actions\LuxidAction;
 use Luxid\Nodes\Nova;
+use Luxid\Routing\Routes;
 
 class WelcomeAction extends LuxidAction
 {
-  public function index()
-  {
-    // Renders Welcome page with default layout
-    return Nova::render('Welcome', [
-      'title' => 'Welcome to Luxid Framework',
-      'version' => '0.5.0',
-      'phpVersion' => PHP_VERSION,
-    ]);
-  }
+    public static function routes(): Routes
+    {
+        return Routes::new()
+            ->add('/', get('index'));
+    }
+
+    public function index()
+    {
+        return Nova::render('Welcome', [
+            'title' => 'Welcome to Luxid Framework',
+            'version' => '0.5.0',
+            'phpVersion' => PHP_VERSION,
+        ]);
+    }
 }

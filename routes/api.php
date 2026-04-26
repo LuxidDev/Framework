@@ -1,16 +1,7 @@
 <?php
 // API routes (JSON responses)
 
-use App\Actions\HealthCheckAction;
+use App\Actions\HealthCheckerAction;
 
-// Health check endpoint
-route('api.health')
-  ->get('/api/health')
-  ->uses(HealthCheckAction::class, 'index')
-  ->open();
-
-// Example API endpoints (commented out - uncomment as needed)
-// route('users.index')
-//     ->get('/api/users')
-//     ->uses(UserApiAction::class, 'index')
-//     ->secure();
+// Register API routes using the new style
+HealthCheckerAction::routes()->register();
