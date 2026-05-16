@@ -1,27 +1,27 @@
 <?php
 
 component('pages/Welcome', function ($c) {
-  $c->state(function () {
-    return [
-      'version' => 'v0.6.1',
-      'title' => 'Build with',
-      'subtitle' => 'The modern PHP framework that combines the power of <span class="text-white font-semibold">Nova Templates</span>, <span class="text-blue-400 font-semibold">Rocket ORM</span>, and <span class="text-purple-400 font-semibold">Juice CLI</span> with the beauty of the SEA architecture.',
-      'showBadge' => true,
-      'ctaLinks' => [
-        ['text' => 'Get Started', 'href' => 'https://luxid-dev.netlify.app/', 'primary' => true],
-        ['text' => 'Documentation', 'href' => 'https://luxid-dev.netlify.app/', 'primary' => false],
-      ]
-    ];
-  });
+    $c->state(function () {
+        return [
+            'version' => 'v0.6.1',
+            'title' => 'Build with',
+            'subtitle' => 'The modern PHP framework that combines the power of <span class="text-white font-semibold">Nova Templates</span>, <span class="text-blue-400 font-semibold">Rocket ORM</span>, and <span class="text-purple-400 font-semibold">Juice CLI</span> with the beauty of the SEA architecture.',
+            'showBadge' => true,
+            'ctaLinks' => [
+                ['text' => 'Get Started', 'href' => 'https://luxid-dev.netlify.app/', 'primary' => true],
+                ['text' => 'Documentation', 'href' => 'https://luxid-dev.netlify.app/', 'primary' => false],
+            ],
+        ];
+    });
 
-  $c->actions([
-    'toggleBadge' => function (&$state) {
-      $state['showBadge'] = !$state['showBadge'];
-    }
-  ]);
+    $c->actions([
+        'toggleBadge' => function (&$state) {
+            $state['showBadge'] = !$state['showBadge'];
+        },
+    ]);
 
-  $c->view(function ($state) {
-?>
+    $c->view(function ($state) {
+        ?>
     <div class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
       <div class="max-w-7xl mx-auto text-center">
 
@@ -72,5 +72,5 @@ component('pages/Welcome', function ($c) {
       </div>
     </div>
 <?php
-  });
+    });
 });
