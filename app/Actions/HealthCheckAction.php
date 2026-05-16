@@ -5,7 +5,7 @@ namespace App\Actions;
 use Luxid\Nodes\Response;
 use Luxid\Routing\Routes;
 
-class HealthCheckerAction extends LuxidAction
+class HealthCheckAction extends LuxidAction
 {
     public static function routes(): Routes
     {

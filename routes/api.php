@@ -1,4 +1,5 @@
 <?php
+
 // API routes (JSON responses)
 
 use App\Actions\HealthCheckAction;

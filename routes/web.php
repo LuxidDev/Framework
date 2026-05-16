@@ -1,4 +1,5 @@
 <?php
+
 // Web routes (HTML responses using Nova)
 
 use App\Actions\WelcomeAction;

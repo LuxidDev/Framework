@@ -7,9 +7,5 @@
     "debug": false
   },
   "default_layout": "AppLayout",
-  "component_paths": [
-    "nova/components",
-    "nova/pages",
-    "nova/layouts"
-  ]
+  "component_paths": ["nova/components", "nova/pages", "nova/layouts"]
 }
