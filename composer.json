@@ -11,10 +11,13 @@
   ],
   "require": {
     "php": "^8.0",
-    "luxid/engine": "^0.7.7",
+    "luxid/engine": "^0.7.9.1",
     "luxid/nova": "^0.1.1",
     "luxid/rocket": "^0.2.2",
     "vlucas/phpdotenv": "^5.6"
+  },
+  "suggest": {
+    "frankenphp/frankenphp": "For high-performance worker mode (2,000 - 5,000 req/s)"
   },
   "autoload": {
     "psr-4": {
@@ -28,7 +31,9 @@
         "Luxid\\Haven\\Providers\\HavenServiceProvider"
       ],
       "commands": {
-        "haven:install": "Luxid\\Haven\\Console\\InstallCommand"
+        "haven:install": "Luxid\\Haven\\Console\\InstallCommand",
+        "franken:install": "Luxid\\Console\\Commands\\FrankenInstallCommand",
+        "franken:serve": "Luxid\\Console\\Commands\\FrankenServeCommand"
       }
     }
   },
